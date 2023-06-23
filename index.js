@@ -53,15 +53,22 @@ app.get("/get-signature", (req, res) => {
 // app.use('*',function(req,res){
 //     res.sendFile(path.join(__dirname,'../client/build/index.html'))
 //    })
+// function startServer(){ 
+//   app.listen(process.env.PORT, async () => {
+//       await connectDB();
+//       console.log('Listening to PORT', process.env.PORT);
+//   })
+// }
+// startServer();
 
-//PORT
-const PORT = process.env.PORT || 8080;
-
-
-//run listen
-app.listen(PORT, () => {
-    console.log(
-      `Server Running on port ${PORT}`.bgCyan
-        .white
-    );
-  });
+app.listen(process.env.PORT, async () => {
+  try{
+      await connectDB()
+      console.log("connected to DB successfully")
+  }
+  catch(err){
+      console.log("error while connecting to DB")
+      console.log(err)
+  }
+  console.log("Listening on port 8000")
+})
