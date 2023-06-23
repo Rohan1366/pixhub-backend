@@ -53,10 +53,15 @@ app.get("/get-signature", (req, res) => {
 // app.use('*',function(req,res){
 //     res.sendFile(path.join(__dirname,'../client/build/index.html'))
 //    })
-function startServer(){ 
-    app.listen(process.env.PORT, async () => {
-        await connectDB();
-        console.log('Listening to PORT', process.env.PORT);
-    })
-}
-startServer();
+
+//PORT
+const PORT = process.env.PORT || 8080;
+
+
+//run listen
+app.listen(PORT, () => {
+    console.log(
+      `Server Running on port ${PORT}`.bgCyan
+        .white
+    );
+  });
